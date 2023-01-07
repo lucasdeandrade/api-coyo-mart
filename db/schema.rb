@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_03_195639) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_06_231442) do
   create_table "products", charset: "utf8mb3", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -20,6 +20,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_03_195639) do
     t.integer "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "featured"
   end
 
 end
