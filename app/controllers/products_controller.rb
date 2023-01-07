@@ -3,8 +3,8 @@ class ProductsController < ApplicationController
 
   # GET /products
   def index
-    @products = Product.filter_name(params[:filter])
-                       .sort_bi(params[:price_ordination])
+    @products = Product.search_product(params[:name_product])
+                       .order_by_price(params[:price_ordination])
     render json: @products
   end
 
@@ -46,6 +46,6 @@ class ProductsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def product_params
-      params.require(:product).permit(:name, :price, :category, :description, :unit_type, :stock, :price_ordination, :filter)
+      params.require(:product).permit(:name, :price, :category, :description, :unit_type, :stock, :featured, :price_ordination, :name_product)
     end
 end
