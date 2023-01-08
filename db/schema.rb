@@ -17,7 +17,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_06_231442) do
     t.string "category"
     t.string "unit_type"
     t.integer "stock"
-    t.integer "price"
+    t.float "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "featured"
