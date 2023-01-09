@@ -1,4 +1,4 @@
-class Product < ApplicationRecor
+class Product < ApplicationRecord
   validates :name, :price, :category, :stock, presence: true
 
   def self.search_product(name_product)
