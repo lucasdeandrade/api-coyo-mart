@@ -4,14 +4,13 @@ RSpec.describe 'Product', type: :request do
   describe 'POST /create' do
     context 'with valid parameters' do
       let!(:my_product) { FactoryBot.create(:product) }
-
       before do
         post '/products', params:
                           {
                             product: {
                               name: my_product.name,
                               description: my_product.description,
-                              category: my_product.category,
+                              category_id: my_product.category_id,
                               unit_type: my_product.unit_type,
                               stock: my_product.stock,
                               price: my_product.price,
@@ -23,7 +22,7 @@ RSpec.describe 'Product', type: :request do
       it 'returns the validates' do
         expect(json['name']).to eq(my_product.name)
         expect(json['price']).to eq(my_product.price)
-        expect(json['category']).to eq(my_product.category)
+        expect(json['category_id']).to eq(my_product.category_id)
         expect(json['stock']).to eq(my_product.stock)
       end
 

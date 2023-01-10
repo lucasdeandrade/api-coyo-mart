@@ -3,6 +3,16 @@
 #
 # Examples:
 #
+  p 'category'
+  categories = %w(notebook celular)
+
+  categories.each do |category|
+    Category.create(
+      description: category
+    )
+  end
+
+  p 'product'
   product = Product.create([
     { 
      name: "Poco x3", 
@@ -14,7 +24,7 @@
      A lente principal de 48MP registra imagens cristalinas com alto nível de detalhes, enquanto a lente ultra angular de 8MP fotografa cenários com campo de visão de até 119°. A lente macro de 2MP é perfeita para ampliar e registrar closes perfeitos, enquanto o sensor de 2MP oferece desfoque de fundo e valoriza os retratos. A câmera frontal oferece 20MP para selfies perfeitas e muito nítidas, além de oferecer os Modos Dual Video e Noturno para fotos nítidas mesmo em ambientes com pouca luz. Além disso, conte com os modos ultra angular para ampliar o campo de visão durante filmagens, ou use os modos Dual vídeo e Vídeo Clone disponíveis para as lentes traseiras multiplicar a sua criatividade e produzir um conteúdo muito mais criativo.
      Para dar suporte a toda essa tecnologia, é necessária uma bateria de alta capacidade. Para isso, conte com impressionantes 5160mAh de bateria e carregamento rápido de 33W. Conecte o cabo de carregamento na entrada USB-C, otimize o seu tempo e continue usando o seu POCO X3 Pro ao máximo.
      Conte com um slot para cartão SIM 1 + cartão híbrido, ou seja, outro cartão SIM ou um MicroSD para aumentar a capacidade de armazenamento, você escolhe o que é melhor para você. Com o Bluetooth 5.0 e Wi-Fi 5, você ganha conexões mais estáveis e maior alcance de cobertura de sinal para se manter sempre conectado. Seu POCO X3 Pro possui um sensor infravermelho que transforma o smartphone em um controle remoto universal que interage com outros dispositivos inteligentes da sua casa ou escritório, além do NFC multifuncional que otimiza a usabilidade das funções e deixa tudo mais prático." ,
-     category: "celular",
+     category: Category.find_by(description: 'celular'),
      unit_type: "unidade",
      stock: 10,
      price: 3599.0
@@ -25,7 +35,7 @@
      O Redmi Note 8 Pro traz para o Brasil a primeira câmera de 64 MP. O sensor inova na capacidade de tirar fotos incríveis com uma riqueza de detalhes que poucas câmeras conseguem entregar.
      O conjunto de 4 câmeras, permite registrar fotos de diversas maneiras.
      A câmera ultra wide tira fotos com até 120° e isso faz dessa lente a escolha perfeita para fotos de grandes monumentos e paisagens. Para fotos extremamente nítidas, use o sensor macro, desenvolvido especialmente para isso.",
-     category: "celular",
+     category: Category.find_by(description: 'celular'),
      unit_type: "unidade",
      stock: 10,
      price: 3199.0
@@ -33,7 +43,7 @@
     { 
      name: "IPhone 14 Plus", 
      description: "Com o iPhone 14 Plus, você pensa grande na supertelona de 6,7 polegadas* e tem bateria para o dia todo**. Usa o novo sistema de câmera dupla para fazer fotos espetaculares em ambientes com pouca ou muita luz. E ganha tranquilidade com a Detecção de Acidente***, um novo recurso de segurança que liga para a emergência se você não puder.",
-     category: "celular",
+     category: Category.find_by(description: 'celular'),
      unit_type: "unidade",
      stock: 2,
      price: 7599.05
@@ -45,7 +55,7 @@
      Seu processador Intel Core i5 da 11ª geração e memória de 8GB RAM garante uma jogabilidade mais rápida e dinâmica, que vai te levar aos níveis mais avançados dos jogos. E você pode jogar à vontade, o Acer Nitro 5 tem um sistema de resfriamento duplo para garantir que sua máquina não esquente, mesmo nos momentos mais intensos*
      A placa de vídeo NVIDIA GeForce GTX 1650 torna a sua experiência mais imersiva, ainda mais aliada a tecnologia de áudio DTS X:Ultra Áudio, a cada ação da jogada você sente seu alto nível de realismo. É pura emoção.
      O Acer Nitro 5 vem equipado com 256GB SSD. É muito espaço para armazenar todos os seus arquivos e velocidade de leitura e gravação superior a um HD tradicional. Com o SSD, todos os seus jogos abrirão em poucos segundos!",
-     category: "notebook",
+     category: Category.find_by(description: 'notebook'),
      unit_type: "unidade",
      stock: 10,
      price: 4689.0
