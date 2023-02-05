@@ -4,6 +4,7 @@ class Product < ApplicationRecord
 
   validates :name, :price, :category, :stock, presence: true
 
+
   def self.search_product(name_product)
     where(['name LIKE ?', "%#{name_product}%"])
   end

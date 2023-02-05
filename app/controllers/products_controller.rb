@@ -10,7 +10,7 @@ class ProductsController < ApplicationController
 
   # GET /products/1
   def show
-    render json: @product
+    render json: @product, include: [:category]
   end
 
   # POST /products
