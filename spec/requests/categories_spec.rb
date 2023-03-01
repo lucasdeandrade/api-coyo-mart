@@ -68,16 +68,14 @@ RSpec.describe "/categories", type: :request do
       }
 
       it "updates the requested category" do
-        category = Category.create! valid_attributes
-        patch category_url(category),
+        patch category_url(my_category),
               params: { category: new_attributes }
-        category.reload
+        my_category.reload
         expect(json['description']).to eq(new_attributes[:description])
       end
 
       it "renders a JSON response with the category" do
-        category = Category.create! valid_attributes
-        patch category_url(category),
+        patch category_url(my_category),
               params: { category: new_attributes }
         expect(response).to have_http_status(:ok)
         expect(response.content_type).to match(a_string_including("application/json"))
@@ -86,8 +84,7 @@ RSpec.describe "/categories", type: :request do
 
     context "with invalid parameters" do
       it "renders a JSON response with errors for the category" do
-        category = Category.create! valid_attributes
-        patch category_url(category),
+        patch category_url(my_category),
               params: { category: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to match(a_string_including("application/json"))
@@ -96,11 +93,60 @@ RSpec.describe "/categories", type: :request do
   end
 
   describe "DELETE /destroy" do
-    it "destroys the requested category" do
-      category = Category.create! valid_attributes
-      expect {
-        delete category_url(category)
-      }.to change(Category, :count).by(-1)
+
+    context 'destroy category' do
+      it "destroys the requested category" do
+        expect {
+          delete category_url(my_category)
+        }.to change(Category, :count).by(-1)
+      end
     end
+
+    # context 'does not destroy category' do
+    #   let!(:my_product) { FactoryBot.create(:product) }
+      
+    #   before do
+    #     post '/products', params:
+    #                       {
+    #                         product: {
+    #                           name: my_product.name,
+    #                           description: my_product.description,
+    #                           category: my_category.id,
+    #                           unit_type: my_product.unit_type,
+    #                           stock: my_product.stock,
+    #                           price: my_product.price,
+    #                           featured: my_product.featured
+    #                         }
+    #                       }
+    #   end
+    
+    # context 'does not destroy category' do
+
+    #   let!(:my_category2) { FactoryBot.create(:category) }
+    #   let!(:my_product2) { FactoryBot.create(:product) }
+
+
+    #   before do
+
+    #     post '/products', params:
+    #                       {
+    #                         product: {
+    #                           name: my_product2.name,
+    #                           description: my_product2.description,
+    #                           category: my_category2,
+    #                           unit_type: my_product2.unit_type,
+    #                           stock: my_product2.stock,
+    #                           price: my_product2.price,
+    #                           featured: my_product2.featured
+    #                         }
+    #                       }
+
+    #     delete "/categories/#{my_category2.id}"
+    #   end
+    
+    #   it 'não pode deletar categoria que contenha produtos' do
+    #     expect(response).to have_http_status(:unprocessable_entity)
+    #   end
+    # end
   end
 end

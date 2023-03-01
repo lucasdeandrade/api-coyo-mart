@@ -56,6 +56,7 @@ group :test do
   gem 'faker'
   gem "shoulda-matchers", "~> 5.3"
   gem 'cpf_faker'
+  gem 'simplecov', require: false
 end
 
 

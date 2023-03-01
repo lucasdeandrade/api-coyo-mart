@@ -3,8 +3,8 @@ class ProductsController < ApplicationController
 
   # GET /products
   def index
-    @products = Product.search_product(params[:name_product])
-                       .order_by_price(params[:price_ordination])
+    @products = Product.all
+    
     render json: @products
   end
 

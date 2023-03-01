@@ -36,7 +36,7 @@ class CategoriesController < ApplicationController
   # DELETE /categories/1
   def destroy
     product = Product.find_by(category: @category)
-    unless product.blank?
+    if product.present?
       return render json: @category.errors, status: :unprocessable_entity
     end
     @category.destroy

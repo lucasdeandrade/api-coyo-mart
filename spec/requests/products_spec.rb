@@ -17,6 +17,14 @@ RSpec.describe 'Products', type: :request do
     end
   end
 
+  describe 'GET /show' do
+    it 'renders a successful response' do
+      product = FactoryBot.create(:product)
+      get product_url(product)
+      expect(response).to be_successful
+    end
+  end
+
   describe 'POST /create' do
     context 'with valid parameters' do
       let!(:my_product) { FactoryBot.create(:product) }
@@ -67,35 +75,69 @@ RSpec.describe 'Products', type: :request do
   end
 
   describe 'PUT /update' do
-    let!(:my_product) { FactoryBot.create(:product) }
+    context 'with valid parameters' do
+      let!(:my_product) { FactoryBot.create(:product) }
 
-    before do
-      post '/products', params:
-                        {
-                          product: {
-                            name: my_product.name,
-                            description: my_product.description,
-                            category: my_product.category,
-                            unit_type: my_product.unit_type,
-                            stock: my_product.stock,
-                            price: my_product.price,
-                            featured: my_product.featured
+      before do
+        post '/products', params:
+                          {
+                            product: {
+                              name: my_product.name,
+                              description: my_product.description,
+                              category: my_product.category,
+                              unit_type: my_product.unit_type,
+                              stock: my_product.stock,
+                              price: my_product.price,
+                              featured: my_product.featured
+                            }
                           }
-                        }
-      put "/products/#{my_product.id}", params:
-                                        {
-                                          product: {
-                                            name: 'Lucas'
+        put "/products/#{my_product.id}", params:
+                                          {
+                                            product: {
+                                              name: 'Lucas'
+                                            }
                                           }
-                                        }
+      end
+
+      it 'returns update name' do
+        expect(json['name']).to eq('Lucas')
+      end
+
+      it 'returns a put status code 200' do
+        expect(response).to have_http_status(:ok)
+      end
     end
 
-    it 'returns update name' do
-      expect(json['name']).to eq('Lucas')
-    end
+    context 'with invalid parameters' do
+      let!(:my_product) { FactoryBot.create(:product) }
 
-    it 'returns a put status code 200' do
-      expect(response).to have_http_status(:ok)
+      before do
+        post '/products', params:
+                            {
+                              product: {
+                                name: my_product.name,
+                                description: my_product.description,
+                                category: my_product.category,
+                                unit_type: my_product.unit_type,
+                                stock: my_product.stock,
+                                price: my_product.price,
+                                featured: my_product.featured
+                              }
+                            }
+        put "/products/#{my_product.id}", params:
+                                          {
+                                            product: {
+                                              name: '',
+                                              category: '',
+                                              stock: '',
+                                              price: ''
+                                            }
+                                          }
+      end
+
+      it 'returns a unprocessable entity status' do
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
     end
   end
 
