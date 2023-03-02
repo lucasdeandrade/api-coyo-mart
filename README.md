@@ -1,10 +1,22 @@
-## API Coyo Mart
+<h2>
+  API Coyo Mart
+  <img align="center" alt="Ruby" src="https://img.shields.io/badge/Ruby-CC342D?style=for-the-badge&logo=ruby&logoColor=white">
+  <img align="center" alt="Rails" src="https://img.shields.io/badge/Ruby_on_Rails-CC0000?style=for-the-badge&logo=ruby-on-rails&logoColor=white">
+</h2>
 Esta é uma API Rest desenvolvida em Ruby on Rails para gerenciar o cadastro de produtos, categorias de produtos e clientes. A API também usa RSpec para testes automatizados e uma gem chamada simplecov para verificar a cobertura total dos testes.
+
+#### Tecnologias usadas
+- Ruby 3
+- Rails 7
+- Mysql
+- Coverage test (Simplecov)
+- Rspec
+- Api Rest
 
 #### Requisitos
 Antes de usar a API, certifique-se de que você tenha os seguintes requisitos instalados:
 
-- Rails 3.1.3
+- Ruby 3.1.3
 - Mysql
 
 #### Clone o repositório:
@@ -97,4 +109,4 @@ body
 ```
 
 ### Conclusão
-Esta é uma API simples para gerenciar o cadastro de produtos, categorias de produtos e clientes. Tem uma aplicação web feita em Vue.js que utiliza dessa api, https://github.com/lucasdeandrade/api-coyo-mart
+Esta é uma API simples para gerenciar o cadastro de produtos, categorias de produtos e clientes. Tem uma aplicação web feita em Vue.js que utiliza dessa api, https://github.com/lucasdeandrade/coyo-mart
