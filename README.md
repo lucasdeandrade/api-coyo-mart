@@ -37,6 +37,11 @@ Antes de usar a API, certifique-se de que você tenha os seguintes requisitos in
 ```ruby
 > rspec
 ```
+#### Subindo o Servidor
+```ruby
+> rails s
+```
+
 ## Uso
 #### A API possui três recursos principais:
 
