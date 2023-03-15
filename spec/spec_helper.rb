@@ -1,7 +1,9 @@
 require 'simplecov'
 
 
-SimpleCov.start
+SimpleCov.start do
+  add_filter "rails_helper"
+end
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate

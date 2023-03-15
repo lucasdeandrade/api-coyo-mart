@@ -101,52 +101,32 @@ RSpec.describe "/categories", type: :request do
         }.to change(Category, :count).by(-1)
       end
     end
-
-    # context 'does not destroy category' do
-    #   let!(:my_product) { FactoryBot.create(:product) }
-      
-    #   before do
-    #     post '/products', params:
-    #                       {
-    #                         product: {
-    #                           name: my_product.name,
-    #                           description: my_product.description,
-    #                           category: my_category.id,
-    #                           unit_type: my_product.unit_type,
-    #                           stock: my_product.stock,
-    #                           price: my_product.price,
-    #                           featured: my_product.featured
-    #                         }
-    #                       }
-    #   end
     
-    # context 'does not destroy category' do
+    context 'does not destroy category' do
+      let!(:my_category2) { FactoryBot.create(:category) }
+      let!(:my_product2) { FactoryBot.create(:product) }
 
-    #   let!(:my_category2) { FactoryBot.create(:category) }
-    #   let!(:my_product2) { FactoryBot.create(:product) }
 
+      before do
+        post '/products', params:
+                          {
+                            product: {
+                              name: my_product2.name,
+                              description: my_product2.description,
+                              category: my_category2.id,
+                              unit_type: my_product2.unit_type,
+                              stock: my_product2.stock,
+                              price: my_product2.price,
+                              featured: my_product2.featured
+                            }
+                          }
 
-    #   before do
-
-    #     post '/products', params:
-    #                       {
-    #                         product: {
-    #                           name: my_product2.name,
-    #                           description: my_product2.description,
-    #                           category: my_category2,
-    #                           unit_type: my_product2.unit_type,
-    #                           stock: my_product2.stock,
-    #                           price: my_product2.price,
-    #                           featured: my_product2.featured
-    #                         }
-    #                       }
-
-    #     delete "/categories/#{my_category2.id}"
-    #   end
+        delete "/categories/#{my_category2.id}"
+      end
     
-    #   it 'não pode deletar categoria que contenha produtos' do
-    #     expect(response).to have_http_status(:unprocessable_entity)
-    #   end
-    # end
+      it 'não pode deletar categoria que contenha produtos' do
+        expect{ delete category_url(my_category2) }.to have_http_status(:unprocessable_entity)
+      end
+    end
   end
 end
